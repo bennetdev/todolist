@@ -1,0 +1,262 @@
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.collapse-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+
+/*ON RESIZE JS*/
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+}
+ #sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #555;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+}
+#sidebarCollapse span:first-of-type {
+    /* rotate first one */
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    /* second one is not visible */
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    /* rotate third one */
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+#sidebarCollapse.active span {
+    /* no rotation */
+    transform: none;
+    /* all bars are visible */
+    opacity: 1;
+    margin: 5px auto;
+}
+
+#todo-content .todo-list{
+    margin: 10px;
+    list-style-type: none;
+    min-width: 300px;
+}
+#todo-content .todo-list h1{
+    padding-left: 11px;
+    padding-right: 11px;
+    word-wrap: break-word;
+}
+#todo-content .todo-list form{
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+#todo-content .todo-list ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#todo-content .todo-list .todo{
+    margin-left: 0;
+    margin: 3px;
+    padding: 3px;
+}
+#todo-content .todo-list .todo{
+    position: relative;
+    padding: 12px 8px 12px 8px;
+
+}
+
+.todo:hover{
+    color: white;
+    background-color: #7386D5;
+    transition: color 0.2s;
+    transition: background-color 0.3s;
+}
+.remove {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.remove:hover {
+  background-color: #f44336;
+  color: white;
+  transition: color 0.2s;
+  transition: background-color 0.3s;
+}
+.done{
+    text-decoration: line-through !important;
+}
+.kategorie-add{
+    padding: 7px;
+}
+.kategorie-add-div h1{
+    padding-left: 9px;
+}
+.loginBody{
+    height: 100vh;
+}
+.login{
+    padding: 50px !important;
+}
+.submit-login{
+    width: 20%;
+}
+.submit{
+    color: #fff;
+    background-color: #7386D5;
+    border-color: #7386D5;
+}
+a{
+    cursor: pointer;
+}
+
+.remove-kategorie{
+
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+@media (max-width: 768px) and (min-width: 400px){
+    #todo-content .todo-list{
+        min-width: 100%;
+    }
+}
+
