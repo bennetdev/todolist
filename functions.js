@@ -1,3 +1,7 @@
+function time_to_days(time){
+	return Math.ceil(time / (1000 * 60 * 60 * 24))
+}
+
 function closeListener(){
 	$("body").on("click", ".remove", function(){
 		var li = $(this).closest("li");
@@ -101,18 +105,17 @@ $(document).ready(function(){
 				$("#"+id).attr("class", "edit-todo");
 			}
 			if(done == false && due_to != ""){
-				if(new Date(due_to).toDateString() === new Date().toDateString()){
-					$("#"+id).parent().attr("class", "due-today todo");
-				}
-				else if( new Date(due_to) < new Date()){
-					$("#"+id).parent().attr("class", "overdue todo");
+				var dayDifference = time_to_days(new Date(due_to).getTime() - new Date().getTime())
+				$("#"+id).next(".due-days").html(dayDifference);
+				if(dayDifference >= 0){
+					$("#"+id).next(".due-days").attr("class", "due-days greenText");
 				}
 				else{
-					$("#"+id).parent().attr("class", "todo");
+					$("#"+id).next(".due-days").attr("class", "due-days redText");
 				}
 			}
 			else{
-				$("#"+id).parent().attr("class", "todo");
+				$("#"+id).next(".due-days").html("");
 			}
 		});
 	});

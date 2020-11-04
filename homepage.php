@@ -4,7 +4,7 @@
     require_once 'php/checkLoggedIn.php';
     require_once 'app/key.php';
     $itemsQuery = $db->prepare("
-        SELECT id, name, done, kategorie_id, due_to, (DATE(due_to) < DATE(NOW()) AND NOT done) as overdue, (DATE(NOW()) = DATE(due_to) AND NOT DONE) as dueToday FROM todo WHERE user_id = :user_id
+        SELECT id, name, done, kategorie_id, due_to, (DATE(due_to) < DATE(NOW()) AND NOT done) as overdue, DATE(due_to) - DATE(NOW()) as dueDays FROM todo WHERE user_id = :user_id
     ");
     $itemsQuery->execute([
         'user_id' => $_SESSION['user_id']
@@ -97,7 +97,7 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-              <p>Welcome to my todolist website. Click anywhere on the little &times; to remove things or click on the text to edit things. You can do this with todos and categories. A <span class="redText">red highlighting</span> of your todos means, that it's overdue and a <span class="greenText">green highlighting</span> means, that it's due today. Your data is stored online and encrypted, so you can see the same list on any device, but only on your account.<br/>For any improvment ideas contact me on <a href="https://bennetdev.de">bennetdev.de</a></p>
+              <p>Welcome to my todolist website. Click anywhere on the little &times; to remove things or click on the text to edit things. You can do this with todos and categories. The number next to your todos indicates the time left until the due date. A <span class="redText">red number</span> next your todos means, that it's overdue and a <span class="greenText">green number</span> means the opposite. Your data is stored online and encrypted, so you can see the same list on any device, but only on your account.<br/>For any improvment ideas contact me on <a href="https://bennetdev.de">bennetdev.de</a></p>
           </div>
 
           <!-- Modal footer -->
@@ -135,7 +135,7 @@
                 </div> 
             </div>
             <div class="kategorie-add-div">
-                    <h1>Neue Kategorie</h1>
+                    <h1>New Category</h1>
                     <form class="kategorie-add" action="php/addKategorie.php" method="POST">
                         <input type="text" name="name" class="name">
                         <input type="submit" value="Add" class="submit btn">   
@@ -155,7 +155,8 @@
                             <?php if(!empty($items)): ?>
                             <?php foreach($items as $item):
                                 if($kategorie['id'] == $item['kategorie_id']): ?>
-                                    <li class="todo <?php echo $item['overdue'] ? ' overdue' : '' ?> <?php echo $item['dueToday'] ? ' due-today' : '' ?>"><a id ="<?php echo $item['id']; ?>" class="<?php echo $item['done'] ? ' done' : ''; ?> edit-todo"><?php echo decryptData($item['name'], $_SESSION['key']); ?></a>
+                                    <li class="todo"><a id ="<?php echo $item['id']; ?>" class="<?php echo $item['done'] ? ' done' : ''; ?> edit-todo"><?php echo decryptData($item['name'], $_SESSION['key']); ?></a>
+                                        <p class="due-days <?php echo $item['overdue'] ? 'redText' : 'greenText' ?>"><?php echo !$item["done"] ? $item["dueDays"] : "" ?></p>
                                         <span class="close remove">×</span>
                                     </li>
                                 <?php endif; ?>   

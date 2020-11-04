@@ -232,6 +232,13 @@ a{
     cursor: pointer;
 }
 
+.due-days{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px 60px 12px 60px;
+}
+
 .overdue{
     color: #fff;
     background-color: #f44336;
