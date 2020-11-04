@@ -232,6 +232,15 @@ a{
     cursor: pointer;
 }
 
+.overdue{
+    color: #fff;
+    background-color: #f44336;
+}
+
+#due-to-input{
+    margin: 10px 0 20px 0;
+}
+
 .remove-kategorie{
 
     right: 0;

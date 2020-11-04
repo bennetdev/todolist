@@ -11,20 +11,26 @@ if(isset($_POST['submit'])){
 	$description = $_POST['description'];
 	$done = $_POST['done'];
 	$doneBool = $done;
+	$due_to = $_POST["due_to"];
+	if($due_to == ""){
+	    $due_to = null;
+    }
+	else{
+        $due_to = date('Y-m-d', strtotime($due_to));
+    }
 	if($doneBool == 'true'){
 		$done = '1';
 	}
 	else{
 		$done = '0';
 	}
-	$hund = "ieof";
 	replaceChars($name);
 	replaceChars($description);
 	replaceChars($done);
 	replaceChars($id);
 	$editQuery = $db->prepare("
 		UPDATE todo
-		SET done = :done, name = :name, description = :description
+		SET done = :done, name = :name, description = :description, due_to = :due_to
 		WHERE id = :id
 		AND user_id = :user_id
 	");
@@ -33,7 +39,8 @@ if(isset($_POST['submit'])){
 		'done' => $done,
 		'name' => encryptData($name, $_SESSION['key']),
 		'description' => encryptData($description, $_SESSION['key']),
-		'user_id' => $_SESSION['user_id']
+		'user_id' => $_SESSION['user_id'],
+        'due_to' => $due_to
 	]);
 	
 }
@@ -44,4 +51,5 @@ if(isset($_POST['submit'])){
 	var name='<?php echo $name; ?>';
 	var description = '<?php echo $description; ?>';
 	var done = '<?php echo $done; ?>';
+	var due_to = '<?php echo $due_to; ?>';
 </script>

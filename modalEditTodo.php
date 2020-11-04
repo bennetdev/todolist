@@ -22,6 +22,11 @@
               <textarea class="form-control" rows="4" id="todo-description" placeholder="description"></textarea>
             </div>
             <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input checked" id="enable-due-to">
+                <label class="custom-control-label" for="enable-due-to">Due to:</label>
+            </div>
+            <input class="form-control" type="date" id="due-to-input" readonly="True">
+            <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input checked" id="todo-done">
               <label class="custom-control-label" for="todo-done">Done</label>
             </div>

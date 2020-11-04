@@ -4,7 +4,7 @@
     require_once 'php/checkLoggedIn.php';
     require_once 'app/key.php';
     $itemsQuery = $db->prepare("
-        SELECT id, name, done, kategorie_id FROM todo WHERE user_id = :user_id
+        SELECT id, name, done, kategorie_id, due_to, DATE(due_to) < DATE(NOW()) as overdue FROM todo WHERE user_id = :user_id
     ");
     $itemsQuery->execute([
         'user_id' => $_SESSION['user_id']
@@ -155,8 +155,7 @@
                             <?php if(!empty($items)): ?>
                             <?php foreach($items as $item):
                                 if($kategorie['id'] == $item['kategorie_id']): ?>
-                                
-                                    <li class="todo"><a id ="<?php echo $item['id']; ?>" class="<?php echo $item['done'] ? ' done' : ''; ?> edit-todo"><?php echo decryptData($item['name'], $_SESSION['key']); ?></a>
+                                    <li class="todo <?php echo $item['overdue'] ? ' overdue' : '' ?>"><a id ="<?php echo $item['id']; ?>" class="<?php echo $item['done'] ? ' done' : ''; ?> edit-todo"><?php echo decryptData($item['name'], $_SESSION['key']); ?></a>
                                         <span class="close remove">×</span>
                                     </li>
                                 <?php endif; ?>   

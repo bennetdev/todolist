@@ -4,7 +4,6 @@ function closeListener(){
 
 		var a = li.find("a");
 		var id = a.attr("id");
-		console.log(id);
 		if(Number.isInteger(+id) && +id > 0){
 			$(".debug").load("php/delete.php",
 			{
@@ -13,15 +12,11 @@ function closeListener(){
 				li.remove();	
 			});
 		}
-		else{
-			console.log("else");
-		}
 	});	
 }
 
 function listener(){
 	$(document).on("submit",".item-add", function(){
-		console.log("test");
 		event.preventDefault();
 		var ul = $(this).closest(".todo-list").find("ul");
 		var code = ul.html();
@@ -49,7 +44,6 @@ $(document).ready(function(){
 	$(document).on("submit", ".kategorie-add", function(){
 		event.preventDefault();
 		var div = $("#todo-content");
-		console.log(div.html());
 		var code = div.html();
 		var nameField = $(this).find(".name")
 		var name = nameField.val();
@@ -76,7 +70,6 @@ $(document).ready(function(){
 	$(document).on("click", ".edit-kategorie", function(){
 		$("#editModalKategorie").modal('show');
 		var id = $(this).closest(".todo-list").attr("id").split("-")[1];
-		console.log(id);
 		
 		$(".debugModal").load("php/setupEditKategorie.php", {
 			id: id
@@ -89,13 +82,15 @@ $(document).ready(function(){
 		var name = $("#todo-name").val();
 		var description = $("#todo-description").val();
 		var done = $("#todo-done").prop("checked");
+		var due_to = $("#enable-due-to").prop("checked") ? $("#due-to-input").val() : "";
 		var submit = $("#submit-edit").val();
-		
+		console.log(due_to);
 		$(".debug").load("php/edit.php", {
 			id: id,
 			name: name,
 			description: description,
 			done: done,
+			due_to: due_to,
 			submit: submit
 		},function(){
 			$("#"+id).text(name);
@@ -104,6 +99,12 @@ $(document).ready(function(){
 			}
 			else{
 				$("#"+id).attr("class", "edit-todo");
+			}
+			if(due_to != "" && new Date(due_to) < new Date()){
+				$("#"+id).parent().attr("class", "overdue todo");
+			}
+			else{
+				$("#"+id).parent().attr("class", "todo");
 			}
 		});
 	});
@@ -126,9 +127,20 @@ $(document).ready(function(){
 	$(document).on("click", ".remove-kategorie", function(){
 		$("#submitRemoveModal").modal('show');
 		var id = $(this).closest(".todo-list").attr("id").split("-")[1];
-		console.log(id);
 		$("#submit-remove-kategorie").closest(".modal-footer-remove").attr("id","kategorie-remove-"+id);
 		
+	});
+	$("#enable-due-to").on("change", function(){
+		if ($("#enable-due-to").is(":checked")) {
+			let now = new Date().toISOString().slice(0,10);
+			$("#due-to-input").val(now);
+			$("#due-to-input").attr("readonly", false);
+		}
+		else {
+			$("#due-to-input").val("YYYY-MM-DD");
+			$("#due-to-input").attr("readonly", true);
+		}
+
 	});
 	$(document).on("click","#submit-remove-kategorie",function(){
 		var div = $(this).closest(".modal-footer-remove");
