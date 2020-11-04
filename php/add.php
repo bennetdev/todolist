@@ -35,6 +35,7 @@ if(isset($_POST['name']) && isset($_POST['submit'])){
 			]);
 			$lastId = $db->lastInsertId();
 			echo '<li class="todo"><a class="edit-todo" id="'.$lastId.'">'.$name.'</a>
+                    <p class="due-days"></p>
 	            <span class="close remove">×</span>
 	        </li>';
 
