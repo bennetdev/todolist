@@ -100,8 +100,16 @@ $(document).ready(function(){
 			else{
 				$("#"+id).attr("class", "edit-todo");
 			}
-			if(due_to != "" && new Date(due_to) < new Date()){
-				$("#"+id).parent().attr("class", "overdue todo");
+			if(done == false && due_to != ""){
+				if(new Date(due_to).toDateString() === new Date().toDateString()){
+					$("#"+id).parent().attr("class", "due-today todo");
+				}
+				else if( new Date(due_to) < new Date()){
+					$("#"+id).parent().attr("class", "overdue todo");
+				}
+				else{
+					$("#"+id).parent().attr("class", "todo");
+				}
 			}
 			else{
 				$("#"+id).parent().attr("class", "todo");

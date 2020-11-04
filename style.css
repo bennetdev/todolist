@@ -236,6 +236,16 @@ a{
     color: #fff;
     background-color: #f44336;
 }
+.due-today{
+    color: #fff;
+    background-color: #008b29;
+}
+.greenText{
+    color: #008b29;
+}
+.redText{
+    color: #f44336;
+}
 
 #due-to-input{
     margin: 10px 0 20px 0;
