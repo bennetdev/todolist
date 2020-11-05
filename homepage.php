@@ -116,6 +116,9 @@
             <ul class="list-unstyled components">
                 <p>Todolist</p>
                 <li>
+                    <a id="toggle-done" class="false">Hide done todos</a>
+                </li>
+                <li>
                     <a id="about">About</a>
                 </li>
                 <li>

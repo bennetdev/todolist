@@ -166,5 +166,24 @@ $(document).ready(function(){
 	$(document).on("click", "#about", function(){
 		$("#aboutModal").modal('show');
 	});
+	$(document).on("click", "#toggle-done", function(){
+		console.log($(this).attr("class"));
+		var todos = $(document).find(".done");
+		var toggle = $(this);
+		if($(this).attr("class") == "false") {
+			todos.each(function () {
+				$(this).parent().css("display", "none");
+				toggle.attr("class", "true");
+				toggle.html("Show done todos");
+			});
+		}
+		else if($(this).attr("class") == "true"){
+			todos.each(function () {
+				$(this).parent().css("display", "block");
+				toggle.attr("class", "false");
+				toggle.html("Hide done todos");
+			});
+		}
+	});
 	
 });
