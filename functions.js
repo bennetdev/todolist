@@ -100,6 +100,9 @@ $(document).ready(function(){
 			$("#"+id).text(name);
 			if(done == true){
 				$("#"+id).attr("class", "done edit-todo");
+				if($("#toggle-done").attr("class") == "true"){
+					$("#"+id).parent().css("display", "none")
+				}
 			}
 			else{
 				$("#"+id).attr("class", "edit-todo");
@@ -167,7 +170,6 @@ $(document).ready(function(){
 		$("#aboutModal").modal('show');
 	});
 	$(document).on("click", "#toggle-done", function(){
-		console.log($(this).attr("class"));
 		var todos = $(document).find(".done");
 		var toggle = $(this);
 		if($(this).attr("class") == "false") {

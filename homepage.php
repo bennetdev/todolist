@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="style.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -151,8 +152,10 @@
                         <?php $kategorie_name = decryptData($kategorie['name'], $_SESSION['key']); ?>
                         <h1><a class="edit-kategorie"><?php echo $kategorie_name; ?></a></h1>
                         <form class="item-add" action="php/add.php" method="POST">
-                            <input type="text" name="name" class="name">
-                            <input type="submit" value="Add" class="submit btn">   
+                            <div class="form-group">
+                                <input type="text" name="name" class="name">
+                                <input type="submit" value="Add" class="submit btn">
+                            </div>
                         </form>
                         <ul>
                             <?php if(!empty($items)): ?>
