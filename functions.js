@@ -88,7 +88,6 @@ $(document).ready(function(){
 		var done = $("#todo-done").prop("checked");
 		var due_to = $("#enable-due-to").prop("checked") ? $("#due-to-input").val() : "";
 		var submit = $("#submit-edit").val();
-		console.log(due_to);
 		$(".debug").load("php/edit.php", {
 			id: id,
 			name: name,
@@ -101,7 +100,7 @@ $(document).ready(function(){
 			if(done == true){
 				$("#"+id).attr("class", "done edit-todo");
 				if($("#toggle-done").attr("class") == "true"){
-					$("#"+id).parent().css("display", "none")
+					$("#"+id).parent().parent().css("display", "none")
 				}
 			}
 			else{
@@ -174,14 +173,14 @@ $(document).ready(function(){
 		var toggle = $(this);
 		if($(this).attr("class") == "false") {
 			todos.each(function () {
-				$(this).parent().css("display", "none");
+				$(this).parent().parent().css("display", "none");
 				toggle.attr("class", "true");
 				toggle.html("Show done todos");
 			});
 		}
 		else if($(this).attr("class") == "true"){
 			todos.each(function () {
-				$(this).parent().css("display", "block");
+				$(this).parent().parent().css("display", "block");
 				toggle.attr("class", "false");
 				toggle.html("Hide done todos");
 			});
