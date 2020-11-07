@@ -35,7 +35,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer modal-footer-todo">
-        <button type="button" id="submit-edit" class="btn submit" data-dismiss="modal">Edit</button>
+        <button type="button" id="submit-edit" class="btn submit" data-dismiss="modal">Submit</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
       <p class="debugModal"></p>

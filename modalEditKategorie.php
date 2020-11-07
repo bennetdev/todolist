@@ -4,7 +4,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Edit Todo</h4>
+        <h4 class="modal-title">Edit category</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -22,7 +22,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer modal-footer-kategorie">
-        <button type="button" id="submit-edit-kategorie" class="btn submit" data-dismiss="modal">Edit</button>
+        <button type="button" id="submit-edit-kategorie" class="btn submit" data-dismiss="modal">Submit</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
       <p class="debugModal"></p>
