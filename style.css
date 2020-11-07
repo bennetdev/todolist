@@ -104,6 +104,11 @@ ul ul a {
 #content.active {
     width: 100%;
 }
+.todo-name-wrapper{
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 
 

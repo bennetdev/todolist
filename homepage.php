@@ -161,7 +161,12 @@
                             <?php if(!empty($items)): ?>
                             <?php foreach($items as $item):
                                 if($kategorie['id'] == $item['kategorie_id']): ?>
-                                    <li class="todo"><a id ="<?php echo $item['id']; ?>" class="<?php echo $item['done'] ? ' done' : ''; ?> edit-todo"><?php echo decryptData($item['name'], $_SESSION['key']); ?></a>
+                                    <li class="todo">
+                                        <div class="todo-name-wrapper">
+                                             <a id ="<?php echo $item['id']; ?>" class="<?php echo $item['done'] ? ' done' : ''; ?> edit-todo">
+                                                <?php echo decryptData($item['name'], $_SESSION['key']); ?>
+                                             </a>
+                                        </div>
                                         <p class="due-days <?php echo $item['overdue'] ? 'redText' : 'greenText' ?>"><?php echo !$item["done"] ? $item["dueDays"] : "" ?></p>
                                         <span class="close remove">×</span>
                                     </li>
