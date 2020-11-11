@@ -28,6 +28,12 @@ if(isset($_POST['submit'])){
 	replaceChars($description);
 	replaceChars($done);
 	replaceChars($id);
+    if(strlen($name) > 50){
+        $name = substr($name, 0, 50);
+    }
+    if(strlen($description) > 500){
+        $description = substr($description, 0, 500);
+    }
 	$editQuery = $db->prepare("
 		UPDATE todo
 		SET done = :done, name = :name, description = :description, due_to = :due_to

@@ -108,16 +108,16 @@ $(document).ready(function(){
 			}
 			if(done == false && due_to != ""){
 				var dayDifference = time_to_days(new Date(due_to).getTime() - new Date().getTime())
-				$("#"+id).next(".due-days").html(dayDifference);
+				$("#"+id).parent().next(".due-days").html(dayDifference);
 				if(dayDifference >= 0){
-					$("#"+id).next(".due-days").attr("class", "due-days greenText");
+					$("#"+id).parent().next(".due-days").attr("class", "due-days greenText");
 				}
 				else{
-					$("#"+id).next(".due-days").attr("class", "due-days redText");
+					$("#"+id).parent().next(".due-days").attr("class", "due-days redText");
 				}
 			}
 			else{
-				$("#"+id).next(".due-days").html("");
+				$("#"+id).parent().next(".due-days").html("");
 			}
 		});
 	});
@@ -134,6 +134,26 @@ $(document).ready(function(){
 		},function(){
 			$("#kategorie-"+id).find(".edit-kategorie").text(name);
 		});
+	});
+	$("#todo-description").on("keyup", function () {
+		var description_length = $(this).val().length;
+		$(this).next(".remaining-chars").html(description_length + "/500");
+		if(description_length > 500){
+			$(this).next(".remaining-chars").attr("class", "remaining-chars description redText");
+		}
+		else{
+			$(this).next(".remaining-chars").attr("class", "remaining-chars name");
+		}
+	});
+	$("#todo-name").on("keyup", function () {
+		var description_length = $(this).val().length;
+		$(this).next(".remaining-chars").html(description_length + "/50");
+		if(description_length > 50){
+			$(this).next(".remaining-chars").attr("class", "remaining-chars name redText");
+		}
+		else{
+			$(this).next(".remaining-chars").attr("class", "remaining-chars name");
+		}
 	});
 
 

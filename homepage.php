@@ -142,7 +142,7 @@
                     <h1>New Category</h1>
                     <form class="kategorie-add" action="php/addKategorie.php" method="POST">
                         <input type="text" name="name" class="name">
-                        <input type="submit" value="Add" class="submit btn">   
+                        <input type="submit" value="Add" class="submit btn add-btn">
                     </form>   
                 </div>
             <div id="todo-content" class="row">
@@ -154,7 +154,7 @@
                         <form class="item-add" action="php/add.php" method="POST">
                             <div class="form-group">
                                 <input type="text" name="name" class="name">
-                                <input type="submit" value="Add" class="submit btn">
+                                <input type="submit" value="Add" class="submit btn add-btn">
                             </div>
                         </form>
                         <ul>

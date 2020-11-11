@@ -11,7 +11,9 @@ if(isset($_POST['name']) && isset($_POST['submit'])){
 	replaceChars($name);
 	replaceChars($kategorie_id);
 	if(is_numeric($kategorie_id)){
-	
+        if(strlen($name) > 50){
+            $name = substr($name, 0, 50);
+        }
 		$checkQuery = $db->prepare("
 					SELECT * FROM kategorien
 					WHERE id = :kategorie_id

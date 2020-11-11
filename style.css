@@ -265,6 +265,19 @@ a{
 #due-to-input{
     margin: 10px 0 20px 0;
 }
+.add-btn{
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+.remaining-chars{
+    float: right;
+    clear-after: both;
+    margin: 2px 0 0 0;
+    font-size: 0.9em;
+}
+.name-group{
+    margin-bottom: 0;
+}
 
 .remove-kategorie{
 

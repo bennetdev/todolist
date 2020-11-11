@@ -10,6 +10,9 @@ if(isset($_POST['submit'])){
 	$name = $_POST['name'];
 	replaceChars($name);
 	replaceChars($id);
+    if(strlen($name) > 50){
+        $name = substr($name, 0, 50);
+    }
 	$editQuery = $db->prepare("
 		UPDATE kategorien
 		SET name = :name

@@ -11,15 +11,16 @@
       <!-- Modal body -->
       <div class="modal-body">
         <form action="app/edit.php" method="post">
-            <div class="form-group">
+            <div class="form-group name-group">
               <label for="todo-name">
-              
               <input type="text" name="name" placeholder="name" id="todo-name" class="form-control" required>
+              <p class="remaining-chars name">0/50</p>
             </label>
             </div>
             <div class="form-group">
               <label for="todo-description">Description:</label>
               <textarea class="form-control" rows="4" id="todo-description" placeholder="description"></textarea>
+                <p class="remaining-chars description">0/500</p>
             </div>
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input checked" id="enable-due-to">

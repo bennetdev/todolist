@@ -40,6 +40,8 @@
 	var done = '<?php echo $done; ?>';
 	var due_to = '<?php echo $due_to; ?>';
 	$("#todo-name").val(name);
+	$(".remaining-chars.name").html(name.length + "/50")
+    $(".remaining-chars.description").html(description.length + "/500")
 	$(".modal-footer-todo").attr("id","modal-"+id);
 	$("#todo-description").val(description);
 	$("#due-to-input").val(due_to)

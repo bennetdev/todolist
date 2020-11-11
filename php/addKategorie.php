@@ -7,9 +7,10 @@ require_once '../php/checkLoggedIn.php';
 if(isset($_POST['name']) && isset($_POST['submit'])){
 	$name = trim($_POST['name']);
 	replaceChars($name);
-
-	
 	if(!empty($name)){
+	    if(strlen($name) > 50){
+	        $name = substr($name, 0, 50);
+        }
 		$kategorieQuery = $db->prepare("
 			INSERT kategorien (name, user_id)
 			VALUES (:name, :user_id)
