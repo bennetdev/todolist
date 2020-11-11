@@ -51,11 +51,3 @@ if(isset($_POST['submit'])){
 	
 }
 ?>
-<script type="text/javascript">
-	var id = '<?php echo $id; ?>';
-	var doneBool = '<?php echo $doneBool; ?>';
-	var name='<?php echo $name; ?>';
-	var description = '<?php echo $description; ?>';
-	var done = '<?php echo $done; ?>';
-	var due_to = '<?php echo $due_to; ?>';
-</script>

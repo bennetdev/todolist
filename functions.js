@@ -5,7 +5,6 @@ function time_to_days(time){
 function closeListener(){
 	$("body").on("click", ".remove", function(){
 		var li = $(this).closest("li");
-
 		var a = li.find("a");
 		var id = a.attr("id");
 		if(Number.isInteger(+id) && +id > 0){
@@ -28,11 +27,15 @@ function listener(){
 		var nameField = $(this).find(".name")
 		var name = nameField.val();
 		var submit = $(this).find(".submit").val();
+		var getid = new URL(window.location.href).searchParams.get("id")
+		var subcategory = getid != null ? getid : "";
+		console.log(getid);
 		$(ul).load("php/add.php",
 			{
 				kategorie_id: kategorie_id,
 				name: name,
-				submit: submit
+				submit: submit,
+				subkategorie_id: subcategory
 			}, function(){
 				ul.prepend(code);
 				nameField.val("");
@@ -61,7 +64,8 @@ $(document).ready(function(){
 				nameField.val("");
 
 			});
-	});	
+	});
+
 	$(document).on("click", ".edit-todo", function(){
 		$("#editModalTodo").modal('show');
 		var id = $(this).attr("id");
@@ -69,6 +73,12 @@ $(document).ready(function(){
 		$(".debugModal").load("php/setupEdit.php", {
 			id: id
 		});
+	});
+	$('#sidebarCollapse').on('click', function () {
+		$('#sidebar, #content').toggleClass('active');
+		$('.collapse.in').toggleClass('in');
+		$(this).toggleClass('active');
+		$('a[aria-expanded=true]').attr('aria-expanded', 'false');
 	});
 
 	$(document).on("click", ".edit-kategorie", function(){
@@ -94,7 +104,7 @@ $(document).ready(function(){
 			description: description,
 			done: done,
 			due_to: due_to,
-			submit: submit
+			submit: submit,
 		},function(){
 			$("#"+id).text(name);
 			if(done == true){

@@ -86,65 +86,16 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="aboutModal">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">About</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-              <p>Welcome to my todolist website. Click anywhere on the little &times; to remove things or click on the text to edit things. You can do this with todos and categories. The number next to your todos indicates the time left until the due date. A <span class="redText">red number</span> next your todos means, that it's overdue and a <span class="greenText">green number</span> means the opposite. Your data is stored online and encrypted, so you can see the same list on any device, but only on your account.<br/>For any improvment ideas contact me on <a href="https://bennetdev.de">bennetdev.de</a></p>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="wrapper">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3><?php echo $_SESSION['username']; ?></h3>
-            </div>
-
-            <ul class="list-unstyled components">
-                <p>Todolist</p>
-                <li>
-                    <a id="toggle-done" class="false">Hide done todos</a>
-                </li>
-                <li>
-                    <a id="about">About</a>
-                </li>
-                <li>
-                    <a href="php/logout.php">Logout</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div id="content">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" id="sidebarCollapse" class="collapse-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div> 
-            </div>
+        <?php require 'sidebar.php'; ?>
             <div class="kategorie-add-div">
-                    <h1>New Category</h1>
-                    <form class="kategorie-add" action="php/addKategorie.php" method="POST">
-                        <input type="text" name="name" class="name">
-                        <input type="submit" value="Add" class="submit btn add-btn">
-                    </form>   
-                </div>
+                <h1>New Category</h1>
+                <form class="kategorie-add" action="php/addKategorie.php" method="POST">
+                    <input type="text" name="name" class="name">
+                    <input type="submit" value="Add" class="submit btn add-btn">
+                </form>
+            </div>
+            <?php require 'aboutModal.php'; ?>
             <div id="todo-content" class="row">
                 <?php foreach($kategorien as $kategorie): ?>
                     <div class="todo-list shadow"  id="kategorie-<?php echo $kategorie['id']; ?>">
@@ -186,14 +137,7 @@
         </div>
         <p class="debug"></p>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar, #content').toggleClass('active');
-                $('.collapse.in').toggleClass('in');
-                $(this).toggleClass('active');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            });
-        });
+
 
     </script>
 </body>

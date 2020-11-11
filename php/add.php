@@ -8,6 +8,13 @@ require_once '../app/key.php';
 if(isset($_POST['name']) && isset($_POST['submit'])){
 	$name = trim($_POST['name']);
 	$kategorie_id = $_POST['kategorie_id'];
+	if($_POST["subkategorie_id"] != ""){
+	    $subkategorie_id = $kategorie_id;
+	    $kategorie_id = $_POST["subkategorie_id"];
+    }
+	else{
+	    $subkategorie_id = null;
+    }
 	replaceChars($name);
 	replaceChars($kategorie_id);
 	if(is_numeric($kategorie_id)){
@@ -25,14 +32,15 @@ if(isset($_POST['name']) && isset($_POST['submit'])){
 			]);
 		if(!empty($name) && $checkQuery->rowCount()){
 			$addedQuery = $db->prepare("
-					INSERT todo (name, user_id, done, created, kategorie_id)
-					VALUES (:name, :user_id, 0, NOW(), :kategorie_id)
+					INSERT todo (name, user_id, done, created, kategorie_id, subkategorie_id)
+					VALUES (:name, :user_id, 0, NOW(), :kategorie_id, :subkategorie_id)
 			");
 
 			$addedQuery->execute([
 				'name' => encryptData($name, $_SESSION['key']),
 				'user_id' => $_SESSION['user_id'],
-				'kategorie_id' => $kategorie_id
+				'kategorie_id' => $kategorie_id,
+                "subkategorie_id" => $subkategorie_id
 
 			]);
 			$lastId = $db->lastInsertId();
