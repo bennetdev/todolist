@@ -99,7 +99,7 @@
                             <input type="submit" value="Add" class="submit btn add-btn">
                         </form>
                     </div>
-                    <div class="col-sm-1 text-center">
+                    <div class="col-sm-1 text-center settingsDiv">
                         <span class="material-icons md-36" id="settings">settings</span>
                     </div>
                     <?php require 'settingsModal.php'; ?>

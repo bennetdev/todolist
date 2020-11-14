@@ -302,6 +302,7 @@ a{
     opacity: 1;
     display: none;
     padding: 10px;
+    border-radius: 20px;
 }
 
 /* icon svgs */

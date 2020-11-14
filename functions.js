@@ -29,7 +29,6 @@ function listener(){
 		var submit = $(this).find(".submit").val();
 		var getid = new URL(window.location.href).searchParams.get("id")
 		var subcategory = getid != null ? getid : "";
-		console.log(getid);
 		$(ul).load("php/add.php",
 			{
 				kategorie_id: kategorie_id,
@@ -74,6 +73,25 @@ $(document).ready(function(){
 			id: id
 		});
 	});
+	$(document).on("click", "#settings", function(){
+
+		var settingsModal = $("#settingsModal");
+		console.log(settingsModal.css("display"));
+		settingsModal.css("top", $(this).parent().position().top + 40 + "px")
+		if(settingsModal.css("display") === "none"){
+			settingsModal.css("display", "block");
+		}
+		else{
+			settingsModal.css("display", "none");
+		}
+	});
+
+	$(document.body).on("click", function(e){
+		if($(e.target).closest('#settingsModal').length === 0 && $(e.target).closest('.settingsDiv').length === 0) {
+			$("#settingsModal").css("display", "none");
+		}
+
+	});
 	$('#sidebarCollapse').on('click', function () {
 		$('#sidebar, #content').toggleClass('active');
 		$('.collapse.in').toggleClass('in');
@@ -89,16 +107,7 @@ $(document).ready(function(){
 			id: id
 		});
 	});
-	$(document).on("click", "#settings", function(){
-		var settingsModal = $("#settingsModal");
-		settingsModal.css("top", $(this).parent().position().top + 40 + "px")
-		if(settingsModal.css("display") === "none"){
-			settingsModal.css("display", "block");
-		}
-		else{
-			settingsModal.css("display", "none")
-		}
-	});
+
 
 	$(document).on("click","#submit-edit",function(){
 		event.preventDefault();
