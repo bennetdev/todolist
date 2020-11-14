@@ -89,6 +89,16 @@ $(document).ready(function(){
 			id: id
 		});
 	});
+	$(document).on("click", "#settings", function(){
+		var settingsModal = $("#settingsModal");
+		settingsModal.css("top", $(this).parent().position().top + 40 + "px")
+		if(settingsModal.css("display") === "none"){
+			settingsModal.css("display", "block");
+		}
+		else{
+			settingsModal.css("display", "none")
+		}
+	});
 
 	$(document).on("click","#submit-edit",function(){
 		event.preventDefault();
@@ -109,7 +119,7 @@ $(document).ready(function(){
 			$("#"+id).text(name);
 			if(done == true){
 				$("#"+id).attr("class", "done edit-todo");
-				if($("#toggle-done").attr("class") == "true"){
+				if($("#toggle-done").is(":checked")){
 					$("#"+id).parent().parent().css("display", "none")
 				}
 			}
@@ -201,18 +211,14 @@ $(document).ready(function(){
 	$(document).on("click", "#toggle-done", function(){
 		var todos = $(document).find(".done");
 		var toggle = $(this);
-		if($(this).attr("class") == "false") {
+		if($(this).is(":checked")) {
 			todos.each(function () {
 				$(this).parent().parent().css("display", "none");
-				toggle.attr("class", "true");
-				toggle.html("Show done todos");
 			});
 		}
-		else if($(this).attr("class") == "true"){
+		else if(!$(this).is(":checked")){
 			todos.each(function () {
 				$(this).parent().parent().css("display", "block");
-				toggle.attr("class", "false");
-				toggle.html("Hide done todos");
 			});
 		}
 	});

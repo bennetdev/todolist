@@ -36,6 +36,8 @@
 
     <title>Todolist</title>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
@@ -90,10 +92,18 @@
         <?php require 'sidebar.php'; ?>
             <div class="kategorie-add-div">
                 <h1>New Category</h1>
-                <form class="kategorie-add" action="php/addKategorie.php" method="POST">
-                    <input type="text" name="name" class="name">
-                    <input type="submit" value="Add" class="submit btn add-btn">
-                </form>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <form class="kategorie-add" action="php/addKategorie.php" method="POST">
+                            <input type="text" name="name" class="name">
+                            <input type="submit" value="Add" class="submit btn add-btn">
+                        </form>
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <span class="material-icons md-36" id="settings">settings</span>
+                    </div>
+                    <?php require 'settingsModal.php'; ?>
+                </div>
             </div>
             <?php require 'aboutModal.php'; ?>
             <div id="todo-content" class="row">
